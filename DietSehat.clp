@@ -9,7 +9,6 @@
 ;;;     preferensi makanan, dan alergi dari pengguna.
 ;;;
 ;;;   Cara menjalankan:
-;;;     (clear)
 ;;;     (load "DietSehat.clp")
 ;;;     (reset)
 ;;;     (run)
@@ -63,8 +62,7 @@
    (printout t "=============================================" crlf)
    (printout t "  SISTEM PAKAR PENENTUAN DIET SEHAT" crlf)
    (printout t "=============================================" crlf)
-   (printout t crlf)
-   (printout t "Jawab pertanyaan berikut untuk menentukan program diet." crlf)
+   (printout t "Diet adalah pengaturan pola makan dan jenis makanan yang dikonsumsi secara teratur untuk mencapai tujuan tertentu, seperti menjaga kesehatan, menurunkan atau menambah berat badan, serta mengelola penyakit. Diet bukan sekadar mengurangi porsi, melainkan pola hidup untuk memenuhi nutrisi seimbang, bukan hanya tentang menurunkan berat badan." crlf)
    (printout t "---------------------------------------------" crlf)
    (printout t crlf)
 
