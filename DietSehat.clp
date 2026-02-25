@@ -7,16 +7,9 @@
 ;;;     Sistem ini menentukan rekomendasi diet yang sehat
 ;;;     berdasarkan tujuan, aktivitas, kondisi medis,
 ;;;     preferensi makanan, dan alergi dari pengguna.
-;;;
-;;;   Cara menjalankan:
-;;;     (load "DietSehat.clp")
-;;;     (reset)
-;;;     (run)
 ;;;======================================================
 
-;;;*****************************************************
-;;;* DEFTEMPLATES - Definisi Struktur Fakta            *
-;;;*****************************************************
+;;; DEFTEMPLATES
 
 ;;; Template untuk profil nutrisi pengguna
 (deftemplate profil-pengguna
@@ -31,9 +24,7 @@
    (slot hasil)             ; hasil program diet
    (slot penjelasan))       ; alasan mengapa diet tersebut dipilih
 
-;;;*****************************************************
-;;;* DEFFUNCTIONS - Fungsi Bantu                       *
-;;;*****************************************************
+;;; DEFFUNCTIONS
 
 ;;; Fungsi interaktif untuk menanyakan pertanyaan
 (deffunction ask-question (?question $?allowed)
@@ -49,21 +40,19 @@
          then (bind ?answer (lowcase ?answer))))
    ?answer)
 
-;;;*****************************************************
-;;;* QUERY RULES - Aturan Pengumpulan Fakta            *
-;;;*****************************************************
 
-;;; Rule ditugaskan menanyai input awal
+;;; QUERY RULES
+
 (defrule tanya-profil-pengguna
    (declare (salience 100))
    (not (profil-pengguna))
    =>
    (printout t crlf)
-   (printout t "=============================================" crlf)
-   (printout t "  SISTEM PAKAR PENENTUAN DIET SEHAT" crlf)
-   (printout t "=============================================" crlf)
+   (printout t "=================================" crlf)
+   (printout t "SISTEM PAKAR PENENTUAN DIET SEHAT" crlf)
+   (printout t "=================================" crlf)
+   (printout t crlf)
    (printout t "Diet adalah pengaturan pola makan dan jenis makanan yang dikonsumsi secara teratur untuk mencapai tujuan tertentu, seperti menjaga kesehatan, menurunkan atau menambah berat badan, serta mengelola penyakit. Diet bukan sekadar mengurangi porsi, melainkan pola hidup untuk memenuhi nutrisi seimbang, bukan hanya tentang menurunkan berat badan." crlf)
-   (printout t "---------------------------------------------" crlf)
    (printout t crlf)
 
    ;; Tanya tujuan diet
@@ -105,9 +94,8 @@
       (preferensi-makan ?preferensi)
       (alergi-susu ?alergi))))
 
-;;;*****************************************************
-;;;* PREDICTION RULES - Aturan Inferensi Diet          *
-;;;*****************************************************
+
+;;; PREDICTION RULES - Aturan Inferensi
 
 ;;; ---- RULE 1: Kondisi Spesifik (Diabetes) ----
 ;;; Jika pengguna menderita diabetes, rekomendasi harus memprioritaskan kontrol gula darah.
@@ -254,13 +242,10 @@
    (printout t "  - Preferensi Makanan : " ?p crlf)
    (printout t "  - Alergi Laktosa     : " ?l crlf)
    (printout t crlf)
+   (printout t "---------------------------------------------" crlf)
    (printout t "Rekomendasi Program : " ?hasil crlf)
-   (printout t crlf)
-   (printout t "Penjelasan & Anjuran:" ?alasan crlf)
+   (printout t "---------------------------------------------" crlf)
+   (printout t "Penjelasan & Anjuran: " ?alasan crlf)
    (printout t crlf)
    (printout t "Tetap semangat dan jaga kesehatan berkelanjutan!" crlf)
    (printout t crlf))
-
-;;;======================================================
-;;;   AKHIR FILE - DietSehat.clp
-;;;======================================================
